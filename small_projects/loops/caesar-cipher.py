@@ -1,8 +1,9 @@
-russianSmallLetters = range(ord("а"), ord("я") + 1)
-russianBigLetters = range(ord("А"), ord("Я") + 1)
-englishSmallLetters = range(ord("a"), ord("z") + 1)
-englishBigLetters = range(ord("A"), ord("Z") + 1)
-
+ranges = dict(
+    russianSmallLetters=range(ord("а"), ord("я") + 1),
+    russianBigLetters=range(ord("А"), ord("Я") + 1),
+    englishSmallLetters=range(ord("a"), ord("z") + 1),
+    englishBigLetters=range(ord("A"), ord("Z") + 1),
+)
 text = input(
     "Введите текст с использованием русских или латинских символов (остальные не будут изменены)\n"
 )
@@ -12,14 +13,10 @@ for char in text:
     code = ord(char)
     selectedRange = None
 
-    if code in russianSmallLetters:
-        selectedRange = russianSmallLetters
-    elif code in russianBigLetters:
-        selectedRange = russianBigLetters
-    elif code in englishSmallLetters:
-        selectedRange = englishSmallLetters
-    elif code in englishBigLetters:
-        selectedRange = englishBigLetters
+    for codeRange in ranges.values():
+        if code in codeRange:
+            selectedRange = codeRange
+            break
 
     if selectedRange != None:
         shift %= len(selectedRange)
