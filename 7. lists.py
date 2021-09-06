@@ -1,38 +1,66 @@
-a = [1, 2.5, '3', "hello", ["this","is","inner","list"]]
+# 0    1    2       3                   4
+lst = [1, 2.5, True, "hello", ["this", "is", "inner", "list"]]
 
-print(f"list: {a}")
-print(f"list length: {len(a)}")
-print(a[0])
-a[0] = -100500
-print(a[-1])
-print(a[4][2], a[-1][2], a[-1][-2])
+n1 = [1, 2, 3]
+n2 = [4, 5, 6]
+n3 = n1 + n2
 
-for i in a:
-    print(i, end =' ')
+# Вывести весь список
+print(f"list: {lst}")
+# Вывести длину списка
+print(f"list length: {len(lst)}")
+# Вывести первый элемент списка
+print(lst[0])
+# Задать первому элементу списка другое значение
+lst[0] = -100500
+# Вывести первый элемент списка с конца
+print(lst[-1])
+# Три способа достучаться до предпосленднего элемента внутреннего списка
+#   0       1       2       3       Прямая нумерация
+#  -4      -3      -2      -1       Обратная нумерация
+# ["this", "is", "inner", "list"]
+print(lst[4][2], lst[-1][2], lst[-1][-2])
+
+print("\nPrinting list")
+# для каждого i из списка lst
+# i будет принимать по очереди значения из списка lst
+for i in lst:
+    print(i, end=" ")
 print()
 
-for i in range(len(a)):
-    print(i, a[i])
+print("\nPrinting list with indexes")
+# для каждого i из диапазона от 0 до (len(lst) - 1)
+# i будет принимать по очереди значения из диапазона от 0 до (len(lst) - 1)
+for i in range(len(lst)):
+    print(i, lst[i])
 print()
 
-print(a[:2],a[2:])
-print(a[-1::-1])
+print(lst[:2], lst[2:])
+print(lst[:])
 
-print(f"even elements: {a[::2]}")
-print(f"reverse list: {a[::-1]}")
+a = [1, 2, 3, 4, 5]
+print(a)
+a = a[:3] + a[4:]
+print(a)
 
-print(a[::2],a[1::2])
+print(f"even elements: {lst[::2]}")
+print(f"odd elements: {lst[1::2]}")
+print(f"reverse list: {lst[::-1]}")
 
-a = list(range(10))
-for i in a:
-    print(i, end =' ')
+print(lst[::2], lst[1::2])
+
+lst = list(range(10))
+for i in lst:
+    print(i, end=" ")
 print()
 
+# сходства
 string = "Hello world!"
 print(f"string: {string} length {len(string)}")
 for i in string:
-    print(i, end=' ')
+    print(i, end=" ")
 print()
 
-print(f"even string elements: {string[::2]}")
+print(f"even string elements: \t{string[::2]}")
+print(f"odd string elements: \t{string[1::2]}")
 print(f"reverse string: {string[::-1]}")
