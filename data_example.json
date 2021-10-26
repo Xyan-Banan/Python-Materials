@@ -1,0 +1,24 @@
+{
+    "first_name": "Ivan",
+    "last_name": "Petrov",
+    "age": 13,
+    "grades": {
+        "math": [
+            5,
+            4,
+            3,
+            5,
+            2
+        ],
+        "russian": [
+            5,
+            5,
+            5
+        ],
+        "physics": [
+            5,
+            4,
+            5
+        ]
+    }
+}
