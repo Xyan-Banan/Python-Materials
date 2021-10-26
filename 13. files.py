@@ -1,10 +1,12 @@
-newFile = open("demo.txt","w")
+newFile = open("demo.txt", "w")
 
-lines = ["Hello! Welcome to demo.txt\n",
-        "This file is for testing purposes.\n",
-        "Good Luck!\n"]
+lines = [
+    "Hello! Welcome to demo.txt\n",
+    "This file is for testing purposes.\n",
+    "Good Luck!\n",
+]
 for line in lines:
-    newFile.write(line) #write by line
+    newFile.write(line)  # write by line
 newFile.close()
 
 try:
@@ -16,36 +18,37 @@ except OSError as e:
 
 readFile = open("demo.txt")
 for line in readFile:
-    print(line, end = "")   #read by line
+    print(line, end="")  # read by line
 
-# readFile.readline() #read until line end or EOF
-# readFile.readline(5) #read N bytes (characters) or until line end or EOF
-# readFile.readlines() #read lines from file as lines array
-# readFile.readlines(5) #read N lines from file as lines array
+readFile.readline()  # read until line end or EOF
+readFile.readline(5)  # read N bytes (characters) or until line end or EOF
+readFile.readlines()  # read lines from file as lines list
+readFile.readlines(5)  # read N lines from file as lines list
 
+readFile.close()
 
 print("\n@@@@@@@@@@@@@@@@@@@@@@\n")
 
-newFile = open("demo.txt","w")
-newFile.writelines(lines)   #write lines array
+newFile = open("demo.txt", "w")
+newFile.writelines(lines)  # write lines array
 newFile.close()
 
-with open("demo.txt") as readFile: #using 'with' statement to control resources
-    print(readFile.read())  #read whole content
+with open("demo.txt") as readFile:  # using 'with' statement to control resources
+    print(readFile.read())  # read whole content
 
 print("\n@@@@@@@@@@@@@@@@@@@@@@\n")
 
-with open("calc.py") as f:
+with open("./small_projects/1. conditions/calculator.py") as f:
     print(f.read())
 
 print("\n@@@@@@@@@@@@@@@@@@@@@@\n")
 
-with open("calc.py",encoding="utf-8") as f:
+with open("./small_projects/1. conditions/calculator.py", encoding="utf-8") as f:
     print(f.read())
 
 print("\n@@@@@@@@@@@@@@@@@@@@@@\n")
 
-with open("calc.py",mode="rb") as f:
+with open("./small_projects/1. conditions/calculator.py", mode="rb") as f:
     text = f.read()
     print("Original")
     print(text)
