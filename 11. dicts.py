@@ -2,32 +2,32 @@
 Capitals = dict()
 
 # Заполним его несколькими значениями
-Capitals['Russia'] = 'Moscow'
-Capitals['Ukraine'] = 'Kiev'
-Capitals['USA'] = 'Washington'
+Capitals["Russia"] = "Moscow"
+Capitals["Ukraine"] = "Kiev"
+Capitals["USA"] = "Washington"
 
-Countries = ['Russia', 'France', 'USA', 'Russia']
+Countries = ["Russia", "France", "USA", "Ukraine"]
 
 for country in Countries:
     # Для каждой страны из списка проверим, есть ли она в словаре Capitals
     if country in Capitals:
-        print('Столица страны ' + country + ': ' + Capitals[country])
+        print("Столица страны " + country + ": " + Capitals[country])
     else:
-        print('В базе нет страны c названием ' + country)
+        print("В словаре нет страны c названием " + country)
 
 ##############################################################################
-Capitals = {'Russia': 'Moscow', 'Ukraine': 'Kiev', 'USA': 'Washington'}
-Capitals = dict(Russia = 'Moscow', Ukraine = 'Kiev', USA = 'Washington')
+Capitals = {"Russia": "Moscow", "Ukraine": "Kiev", "USA": "Washington"}
+Capitals = dict(Russia="Moscow", Ukraine="Kiev", USA="Washington")
 Capitals = dict([("Russia", "Moscow"), ("Ukraine", "Kiev"), ("USA", "Washington")])
 Capitals = dict(zip(["Russia", "Ukraine", "USA"], ["Moscow", "Kiev", "Washington"]))
 print(Capitals)
 
 for country in Capitals:
-    print(country,Capitals[country])
+    print(country, Capitals[country])
 
 print("@@@@@@@@@@")
-for country,capital in Capitals.items():
-    print(country,capital)
+for country, capital in Capitals.items():
+    print(country, capital)
 
 print("@@@@@@@@@@")
 print("Keys")
@@ -39,5 +39,6 @@ for value in Capitals.values():
     print(value)
 
 print("@@@@@@@@@@")
+# print(Capitals["Italy"])
 print(Capitals.get("Italy"))
-print(Capitals.get("Italy","@@@"))
+print(Capitals.get("Italy", "@@@"))
