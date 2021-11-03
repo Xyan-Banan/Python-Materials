@@ -38,10 +38,10 @@ for doctor in doctors:
     points = countPoints(doctor["услуги"])
     res.append({"имя": doctor["имя"], "зарплата": points * 1000})
 
-outFileName = "result.json"
+outFileName = "./small_projects/6. files/result.json"
 try:
     with open(outFileName, "w", encoding="utf-8") as output_file:
-        json.dump(res, output_file, ensure_ascii=False)
+        json.dump(res, output_file, ensure_ascii=False, indent=4)
 except Exception as e:
     print("ошыбка")
     print(e)
