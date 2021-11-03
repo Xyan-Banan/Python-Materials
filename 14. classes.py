@@ -1,6 +1,7 @@
 class Box:
     value = 0
 
+
 b = Box()
 print(f"b.value = {b.value}")
 b.value = 10
@@ -18,17 +19,21 @@ box = Box()
 box.aaa = 5
 print(box, box.aaa)
 
+
 def f():
     print("Hello, i'm a box")
+
 
 box.coolFunction = f
 box.coolFunction()
 
 print("##############################################")
 
+
 class Class:
     teacher = ""
     students = []
+
 
 c = Class()
 c.teacher = "Mrs. Smith"
@@ -39,18 +44,22 @@ c2 = Class()
 c2.teacher = "Splinter"
 c2.students.append("Donatello")
 print(f"{c.teacher} {c.students}")
+print(f"{c2.teacher} {c2.students}")
 
 print("Calling clear method")
 c2.students.clear()
 print(f"{c.teacher} {c.students}")
 print(f"{c2.teacher} {c2.students}")
 
+
 print("##############################################")
 
+
 class Class2:
-    def __init__(self, teacher):
+    def __init__(self, teacher=""):
         self.teacher = teacher
         self.students = []
+
 
 c3 = Class2("Rick")
 c3.students.append("Morty")
@@ -72,19 +81,19 @@ print(f"c3: {c3.teacher} {c3.students}")
 
 print("##############################################")
 
-#Part 2
+# Part 2
+
 
 class Class3:
-    def __init__(self, teacher = None):
-        self._teacher = teacher #treated as non-public
-        self.__students = []    #name mangling to _Class3__student
+    def __init__(self, teacher=None):
+        self._teacher = teacher  # treated as non-public
+        self.__students = []  # name mangling to _Class3__student
 
-    def addStudent(self,student):
-        if(type(student) is str):
+    def addStudent(self, student):
+        if type(student) is str:
             self.__students.append(student)
-        if(type(student)  is int):
-            print("Illegal argument type")
-            # raise AttributeError("")
+        else:
+            raise ValueError("Illegal argument type")
 
     def __str__(self):
         return f"{self._teacher} {self.__students}"
@@ -93,7 +102,10 @@ class Class3:
 complitlyClosedClass = Class3("Socratus")
 complitlyClosedClass.addStudent("Plato")
 complitlyClosedClass.addStudent("Aristotle")
-complitlyClosedClass.addStudent(1)
+try:
+    complitlyClosedClass.addStudent(1)
+except ValueError as e:
+    print(e)
 
 print(complitlyClosedClass._teacher)
 # print(complitlyClosedClass.__students)
@@ -101,6 +113,7 @@ print(complitlyClosedClass._Class3__students)
 print(complitlyClosedClass)
 
 print("##############################################")
+
 
 class Person:
     def __init__(self, fname, lname):
@@ -110,14 +123,18 @@ class Person:
     def __str__(self):
         return f"{self._firstname} {self.__lastname}"
 
+
 p = Person("Peter", "Parker")
 print(p)
+
 
 class Student(Person):
     pass
 
-s = Student("Frodo","Baggins")
+
+s = Student("Frodo", "Baggins")
 print(f"inherited with no changes: {s}")
+
 
 class Student(Person):
     def __init__(self, fname, lname, grade):
@@ -126,8 +143,12 @@ class Student(Person):
         self.__secretProp = "Cool physicist"
 
     def __str__(self):
-        # return f"{self._firstname} {self.__lastname} {self._grade}"
+        # return f"{self._firstname} {self.__lastname} {self._grade}" # лучше, но не можем использовать из-за области видимости __lastname
         return super().__str__() + f" {self._grade}"
+
+    # def __repr__(self) -> str:
+    #     return super().__repr__()
+
 
 s = Student("Albert", "Einstein", 5.0)
 
@@ -149,15 +170,18 @@ print(f"secret property = {s._Student__secretProp}")
 
 print("##############################################")
 
-s2 = Student("Issac","Newton",3.0)
-studs = [s,s2]
+print(s)
+s2 = Student("Issac", "Newton", 3.0)
+studs = [s, s2]
 print(studs)
 for stud in studs:
-    print(stud, end = " | ")
+    print(stud, end=" | ")
 print()
+
 
 def r(self):
     return f"Student('{self._firstname}','{self._Person__lastname}',{self._grade})"
+
 
 Student.__repr__ = r
 
@@ -169,6 +193,7 @@ print(studs)
 
 print("##############################################")
 
+
 class Mapping:
     def __init__(self, iterable):
         self.items_list = []
@@ -178,27 +203,28 @@ class Mapping:
         for item in iterable:
             self.items_list.append(item)
 
-    __update = update   # private copy of original update() method
+    __update = update  # private copy of original update() method
+
 
 class MappingSubclass(Mapping):
-
     def update(self, keys, values):
         # provides new signature for update()
         # but does not break __init__()
         for item in zip(keys, values):
             self.items_list.append(item)
 
-m = Mapping([1,2,3,4])
+
+m = Mapping([1, 2, 3, 4])
 print(m.items_list)
 m.update("a b c".split())
 print(m.items_list)
-m2 = MappingSubclass([5,4,3,2,1])
+m2 = MappingSubclass([5, 4, 3, 2, 1])
 print(m2.items_list)
-m2.update("a b c".split(),(1,2,3))
+m2.update("a b c".split(), (1, 2, 3))
 print(m2.items_list)
 
 # MappingSubclass._Mapping__update = MappingSubclass.update
-m3 = MappingSubclass([1,2,3])
+m3 = MappingSubclass([1, 2, 3])
 
 del m.items_list
 # del m.update
@@ -207,11 +233,16 @@ del m.items_list
 
 ###########################################################
 
+
 def a(i):
-    return i*i
+    return i * i
 
-def a(k,j):
-    return k*j
 
-print(i = a(5))
-print(a(5,7))
+print(a(i=5))
+
+
+def a(k, j):
+    return k * j
+
+
+print(a(5, 7))
