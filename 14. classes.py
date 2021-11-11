@@ -234,6 +234,61 @@ del m.items_list
 ###########################################################
 
 
+def helloFunc():
+    print("hello")
+
+
+def helloFuncSelf(self):
+    print(f"field = {self.field}")
+
+
+class A:
+    def __init__(self, function=None) -> None:
+        self.func = helloFunc
+        self.funcSelf = function
+        self.field = 10
+
+
+class B(A):
+    pass
+
+
+class C(A):
+    pass
+
+
+class D(A):
+    pass
+
+
+# Полиморфизм на уровне классов
+b = B(helloFuncSelf)
+c = C()
+d = D()
+
+# у всех объектов будет поле 'field' и поле 'func', т.к. они - наследники одного класса
+lst = [b, c, d]
+for i in lst:
+    i.field
+    i.func()
+
+
+# разница между добавленными извне методами
+# метод func не принимает параметров, поэтому не может получить информацию из объекта
+b.func()
+# метод funcSelf принимает один параметр,
+# поэтому можно получить информацию из объекта, но нужно для этого передать объект как аргумент
+b.funcSelf(b)
+b.field
+
+# можно удалить поля или ссылки на функции из объектов. на другие объекты это не повлияет
+del b.func
+del b.funcSelf
+# b.func()
+# b.funcSelf()
+
+# Полиморфизм на уровне методов (его нет)
+# каждое новое описание - удаляет старое
 def a(i):
     return i * i
 
@@ -246,3 +301,25 @@ def a(k, j):
 
 
 print(a(5, 7))
+
+# в такой форме метод позволяет передать неизвестное количество аргументов
+# полимерфизм по количеству аргументов
+def a(*args):
+    if len(args) == 1:
+        pass
+    elif len(args) == 2:
+        pass
+
+
+a(1, 2, 3, 4, 5)
+
+
+def a(param):
+    if type(param) is str:
+        print("this code works only with STRINGS")
+    elif type(param) is int:
+        print("this code works only with INTEGERS")
+
+
+a("text")
+a(10)
