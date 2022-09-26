@@ -18,9 +18,11 @@ print('В тексте есть "двойные" кавычки')
 print("В тексте есть 'одинарные' кавычки")
 s = "This 'sunny' is a string"
 print(s)
+
 s = """A multiline
 string"""
 print(s)
+
 s = "Hello world!"
 print("s[4] = ", s[4])  # s[4] = 'o'
 print("s[6:11] = ", s[6:11])  # s[6:11] = 'world'
